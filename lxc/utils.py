@@ -24,7 +24,7 @@ def ContainerMemUsage(name):
 	memused = int(inst.getValue("memory.usage_in_bytes"))
 	memswused = int(inst.getValue("memory.memsw.usage_in_bytes"))
 
-	print "         %12s	%12s	%12s" % ("total","used","free")
-	print "Mem  :	%12i	%12i	%12i" % (byte2MiByte(memlimit),byte2MiByte(memused),byte2MiByte(memlimit-memused))
-	print "Swap :	%12i	%12i	%12i" % (byte2MiByte(memswlimit-memlimit),byte2MiByte(memswused-memused),byte2MiByte(memswlimit-memlimit-(memswused-memused)))
-	print "Total:	%12i	%12i	%12i" % (byte2MiByte(memswlimit),byte2MiByte(memswused),byte2MiByte(memswlimit-memswused))
+	print "         %12s	%12s	%12s	%12s" % ("total","used","free", "percent used")
+	print "Mem  :	%12i	%12i	%12i	%12i" % (byte2MiByte(memlimit),byte2MiByte(memused),byte2MiByte(memlimit-memused), memused/float(memlimit)*100)
+	print "Swap :	%12i	%12i	%12i	%12i" % (byte2MiByte(memswlimit-memlimit),byte2MiByte(memswused-memused),byte2MiByte(memswlimit-memlimit-(memswused-memused)), (memswused-memused)/float(memswlimit-memlimit)*100)
+	print "Total:	%12i	%12i	%12i	%12i" % (byte2MiByte(memswlimit),byte2MiByte(memswused),byte2MiByte(memswlimit-memswused), memswused/float(memswlimit)*100)
